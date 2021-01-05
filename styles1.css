@@ -15,18 +15,28 @@ body {
     display: flex;
     height: 100%;
     width: 1000%;
-    background: url(./images/background.jpg);
+    /* background: url(./images/background.jpg);
     background-attachment: scroll;
     background-position: left top;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain; */
     transition: all 1s;
+    position: absolute;
+    
+  }
+  .backgroundSlider {
+    height: 100%;
+    width: 1000%;
+    background: url(./images/background.jpg);
+    background-attachment: fixed;
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   
   .slider section {
     flex-basis: 100%;
-    margin-left: 3rem;
     justify-content: left;
     align-items: center;
     display: flex;
@@ -77,21 +87,12 @@ body {
     
   }
 
-  #loader-wrapper{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:1000;
-  }
-
-
-  #loader{
-    height:100%;
-    width:100%;
+  #buddaimg{
+    height:20px;
+    width:200px;
     background: url(./images/monk.png);
     background-repeat: no-repeat;
+    background-attachment: fixed;
   background-position: center; 
 
     -webkit-animation-name: bounce;
