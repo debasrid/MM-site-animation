@@ -21,7 +21,8 @@ indicators.forEach((indicator, i) => {
     slider.style.transform = 'translateX(' + (i) * -10 + '%)';
     bgslider.style.transform = 'translateX(' + (i) * -5 + '%)';
     index = i;
-
+    sections[index].style.webkitAnimationName = 'fadein';
+    sections[index].style.webkitAnimationDuration = '5s';
   });
 });
 
