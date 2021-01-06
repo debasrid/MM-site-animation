@@ -1,10 +1,9 @@
-window.addEventListener('load', function () {
-  document.querySelector('body').classList.add("loaded")
-});
-
+const delayInMilliseconds = 3000; //1 second
 const left = document.querySelector('.left');
 const right = document.querySelector('.right');
 
+const container = document.querySelector('.container');
+const carousel = document.querySelector('.carousel');
 const slider = document.querySelector('.slider');
 const bgslider = document.querySelector('.backgroundSlider');
 const sections = document.querySelectorAll('.slider section');
@@ -12,7 +11,16 @@ const sections = document.querySelectorAll('.slider section');
 const indicatorParent = document.querySelector('.control ul');
 const indicators = document.querySelectorAll('.control li');
 
-index = 0;
+var index = 0;
+
+window.addEventListener('load', function () {
+  setTimeout(function() {
+    carousel.classList.add("carouselloaded");
+    container.classList.add("containerloaded");
+    carousel.style.opacity = "1";
+  }, delayInMilliseconds); 
+});
+
 
 indicators.forEach((indicator, i) => {
   indicator.addEventListener('click', () => {
