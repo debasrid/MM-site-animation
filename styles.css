@@ -1,4 +1,14 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+@font-face {
+    font-family: 'Klavika Lt';
+    src: url('Klavika-Light.woff2') format('woff2'),
+        url('Klavika-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
 body {
     background: rgb(0, 0, 0);
   }
@@ -26,7 +36,6 @@ body {
   position: absolute;
 }
 
-
   .slider {
     display: flex;
     height: 100%;
@@ -34,7 +43,7 @@ body {
     transition: all 1s;
     position: absolute;
   }  
-  .slider section {
+  .slider section{
     flex-basis: 100%;
     justify-content: left;
     align-items: center;
@@ -65,7 +74,8 @@ body {
     list-style: none;
     display: flex;
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
+    left:4%;
     
   }
   .control ul li {
@@ -76,12 +86,83 @@ body {
     cursor: pointer;
     text-align: center;
     color: darkgrey;
+    
   }
   .control ul li.selected {
     background: darkgrey;
     
   }
 
+ span {    
+    font-family: 'Klavika LT';
+    color: #ffffff;
+    position: absolute;
+  }
+
+.top {
+      top: 10%;
+      left: 1%;
+      /* font-size: 36px; */
+      font-size:3vw;
+      text-decoration: underline;
+      text-transform: capitalize;
+  }
+
+ .lfttxt{
+    padding-left: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size:3vw;
+    /* font-size: 36px; */
+    font-size: 3vw;
+    text-decoration: underline;
+    text-transform: capitalize;
+  }
+
+  .rgttxt{
+    padding-left:7.0%;
+    text-align: right;
+    top: 50%;
+    transform: translateY(-50%);
+    /* font-size: 40px; */
+    font-size: 3vw;
+    text-decoration: underline;
+    text-transform: capitalize;
+  }  
+  
+  .contacttext{
+    top:10%;
+    transform: translateY(-50%);
+    padding-left: 7%;
+    /* font-size: 20px;  */
+    font-size: 2.75vw;
+  }
+  
+
+ .bottom{
+     /* padding-left: 80px; */
+     padding-left: 1%;
+      /* bottom:60px; */
+      bottom:8%;
+      /* font-size: 14px; */
+      font-size: 1vw;
+  }
+
+.btmtxt{
+    /* padding-left:350px; */
+    padding-left: 2.5%;
+      font-size:1vw;
+      /* bottom:20px;  */
+      bottom:3%;
+  }  
+
+  .logo{
+    width:100px;
+    height:70px;
+    position: absolute;
+    bottom: 30px;
+    right:80px;
+  }
   @keyframes fadein {
       from { opacity: 0; }
       to   { opacity: 1; }
@@ -213,3 +294,9 @@ body {
   from { opacity: 1; }
   to   { opacity: 0; }
 }
+
+@media (max-width: 1200px) {
+    .top,.lfttxt,.rgttxt,.contacttext { font-size: 3vh; }
+    .bottom, .btmtxt{font-size: 1vh;}
+}
+
