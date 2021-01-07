@@ -11,6 +11,8 @@ const sections = document.querySelectorAll('.slider section');
 const indicatorParent = document.querySelector('.control ul');
 const indicators = document.querySelectorAll('.control li');
 
+const transitionScale = ((window.matchMedia("(max-width: 400px)")).matches) ? 11 : 6 ;
+
 var index = 0;
 
 window.addEventListener('load', function () {
@@ -27,7 +29,7 @@ indicators.forEach((indicator, i) => {
     document.querySelector('.control .selected').classList.remove('selected');
     indicator.classList.add('selected');
     slider.style.transform = 'translateX(' + (i) * -10 + '%)';
-    bgslider.style.transform = 'translateX(' + (i) * -5 + '%)';
+    bgslider.style.transform = 'translateX(' + (i) * -transitionScale + '%)';
     index = i;
     sections[index].style.webkitAnimationName = 'fadein';
     sections[index].style.webkitAnimationDuration = '5s';
@@ -39,7 +41,7 @@ left.addEventListener('click', function () {
   index = (index > 0) ? index - 1 : 0;
   document.querySelector('.control .selected').classList.remove('selected');
   indicatorParent.children[index].classList.add('selected');
-  bgslider.style.transform = 'translateX(' + (index) * -5 + '%)';
+  bgslider.style.transform = 'translateX(' + (index) * -transitionScale + '%)';
   slider.style.transform = 'translateX(' + (index) * -10 + '%)';
   sections[index].style.webkitAnimationName = 'fadein';
   sections[index].style.webkitAnimationDuration = '5s';
@@ -50,7 +52,7 @@ right.addEventListener('click', function () {
   index = (index < 10 - 1) ? index + 1 : 9;
   document.querySelector('.control .selected').classList.remove('selected');
   indicatorParent.children[index].classList.add('selected');
-  bgslider.style.transform = 'translateX(' + (index) * -5 + '%)';
+  bgslider.style.transform = 'translateX(' + (index) * -transitionScale + '%)';
   slider.style.transform = 'translateX(' + (index) * -10 + '%)';
   sections[index].style.webkitAnimationName = 'fadein';
   sections[index].style.webkitAnimationDuration = '5s';
