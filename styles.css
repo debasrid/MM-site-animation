@@ -1,0 +1,353 @@
+
+/* Font for left and right arrows on screen */
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+/* Font for texts on screen */
+@font-face {
+  font-family: 'Klavika Lt';
+  src: url('Klavika-Light.woff2') format('woff2'),
+      url('Klavika-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+  
+body {
+  background: rgb(0, 0, 0);
+}
+.container {
+  width: 100%;
+  margin:20px auto;
+  position: relative;
+}
+.carousel {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+}
+
+.backgroundSlider {
+  height: 100%;
+  width: 1000%;
+  background: url(./images/background.jpg);
+  background-attachment: fixed;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  transition: all 1s;
+  position: absolute;
+}
+
+.slider {
+  display: flex;
+  height: 100%;
+  width: 1000%;
+  transition: all 1s;
+  position: absolute;
+}  
+.slider section{
+  flex-basis: 100%;
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.left, .right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.arrow i {
+  font-size: 40px;
+  -webkit-user-select: none;
+  color: #ffffff;
+}
+.left {
+  left: 10px;
+}
+.right {
+  right: 10px;
+}
+
+/* Navigation controls */
+.control ul {
+  list-style: none;
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left:4%;
+  
+}
+.control ul li {
+  width: 20px;
+  height: 15px;
+  background: transparent;
+  border: 2px darkgrey dotted;
+  cursor: pointer;
+  text-align: center;
+  color: darkgrey;
+  
+}
+.control ul li.selected {
+  background: darkgrey;
+  
+}
+
+span {    
+  font-family: 'Klavika LT';
+  color: #ffffff;
+  position: absolute;
+}
+
+/* Screen text styles */
+.top {
+      top: 10%;
+      left: 1%;
+      font-size:3vw;
+      text-decoration: underline;
+      text-transform: capitalize;
+  }
+
+ .lfttxt{
+    top: 50%;
+    transform: translateY(-50%);
+    font-size:3vw;
+    font-size: 3vw;
+    text-decoration: underline;
+    text-transform: capitalize;
+  }
+
+  .rgttxt{
+    text-align: right;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3vw;
+    text-decoration: underline;
+    text-transform: capitalize;
+  }  
+  
+  .contacttext{
+    top:10%;
+    transform: translateY(-50%);
+    padding-left: 7%;
+    font-size: 2.75vw;
+  }
+  
+
+ .bottom{
+    padding-left: 1%;
+    bottom:8%;
+    font-size: 1vw;
+  }
+
+.btmtxt{
+    padding-left: 2.5%;
+    font-size:1vw;
+    bottom:3%;
+  }  
+
+  /* Logo style */
+  .logo{
+    width:70%;
+    height: 10%;
+    position: absolute;
+    bottom: 0;
+    left:85%;
+    background: url(./images/logo_mid.png);
+    background-repeat: no-repeat;
+  }
+
+  
+/**
+* Text fadein effect for different browsers
+*/
+  @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+
+  /* Firefox < 16 */
+  @-moz-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+
+  /* Safari, Chrome and Opera > 12.1 */
+  @-webkit-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+
+  /* Internet Explorer */
+  @-ms-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+
+  /* Opera < 12.1 */
+  @-o-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+
+
+/*Loader styles   */
+
+  #loader-wrapper {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  }
+
+/* Smoke animation for loader */
+  #smoke {
+    display:block;
+    position: absolute;
+    opacity: 0.25;
+
+    height:100%;
+    width:100%;
+    background: url(./images/smoke.gif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    background-position: 50% 35%; 
+
+    z-index:1001;
+  }
+
+/* Loader style */
+  #loader {
+    display:block;
+    position: absolute;
+
+    height:100%;
+    width:100%;
+    background: url(./images/monk.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 5%;
+    background-position: center; 
+
+    -webkit-animation-name: bounce;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-duration: 1.2s;
+    -webkit-animation-iteration-count: 10;
+    z-index:1002;
+  }
+  
+  #loader-wrapper .loader-section {
+    position:fixed;
+    top:0;
+    background:#333;
+    width:51%;
+    height:100%;
+    z-index:1000;
+  }
+  
+  #loader-wrapper .loader-section.section-left {
+    left:0
+  }
+  #loader-wrapper .loader-section.section-right {
+    right:0;
+  }
+  
+  /* Loaded Styles */
+  .carouselloaded {
+    animation-name: appear;
+    animation-duration: 5s;
+  }
+  .containerloaded #loader {
+    opacity: 0;
+    transition: all 5.3s ease-out;
+  }
+  .containerloaded #loader-wrapper {
+    visibility: hidden;
+    transform:translateY(-100%);
+    
+  }
+    
+ /* Bounce animation for loading image */
+  @-webkit-keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(23px);
+    }
+    60% {
+      transform: translateY(-25px);
+    }
+    80%{
+      transform: translateY(0);
+    }
+  }
+
+/* Text animations */
+@keyframes appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes disappear {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+
+/**
+*Adjusting for different screen sizes
+*/
+
+/* Extra small devices (phones, 400px and down) */
+@media only screen and (max-width: 400px) {
+  .lfttxt{ padding-left: 1.5%; }
+  .rgttxt{ padding-left: 4%; }
+  .top,.lfttxt,.rgttxt,.contacttext { font-size: 2.5vh; }
+  .logo{ background: url(./images/logo_sm.png) no-repeat; left: 75%}
+  .bottom,.btmtxt{font-size: 2vh;  padding-left: 1%; bottom:8%;}
+}
+
+/* Small devices (portrait tablets and large phones, 400px and up) */
+@media only screen and (min-width: 400px) {
+  .lfttxt{ padding-left: 1%; }
+  .rgttxt{ padding-left: 6.5%; }
+  .top,.lfttxt,.rgttxt,.contacttext { font-size: 3vh; }
+  .logo{ background: url(./images/logo_mid.png) no-repeat; left: 75%}
+  .bottom,.btmtxt{font-size: 2vh;  padding-left: 1%; bottom:8%;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .lfttxt{ padding-left: 1%; }
+  .rgttxt{ padding-left: 6.5%; }
+  .top,.lfttxt,.rgttxt,.contacttext { font-size: 4vh; }
+  .logo{ background: url(./images/logo_mid.png) no-repeat; left: 80%}
+  .btmtxt{font-size: 2vh;  padding-left: 1%; bottom:8%;}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .lfttxt{ padding-left: 0.5%; }
+  .rgttxt{ padding-left: 7.5%; }
+  .top,.lfttxt,.rgttxt,.contacttext { font-size: 4vh; }
+  .logo{ background: url(./images/logo_lrg.png) no-repeat; left: 80%}
+  .btmtxt{font-size: 2vh;  padding-left: 3.25%; bottom:4%;}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .lfttxt{ padding-left: 0.5%; }
+  .rgttxt{ padding-left: 7.5%; }
+  .top,.lfttxt,.rgttxt,.contacttext { font-size: 5vh; }
+  .logo{ background: url(./images/logo_lrg.png) no-repeat; left: 85%}
+  .btmtxt{font-size: 2vh;  padding-left: 2.5%; bottom:4%;}
+}
+
+
