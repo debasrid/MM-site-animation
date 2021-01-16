@@ -6,7 +6,11 @@
 */
 
 
-const delayInMilliseconds = 3000;                               //Delay period for loading the whole site
+const loaddelayInMilliseconds = 100;                               //Delay period for loading the loader
+const sitedelayInMilliseconds = 3000;                               //Delay period for loading the whole site
+
+const loaderTxt1 = document.querySelector('loader-txt1'); 
+
 const left = document.querySelector('.left');                   //Pointer to Left arrow element
 const right = document.querySelector('.right');                 //Pointer to Left arrow element
 
@@ -31,7 +35,7 @@ window.addEventListener('load', function () {
     carousel.classList.add("carouselloaded");   // Carousel should be hidden while window is loaded and then displayed after predefined time
     container.classList.add("containerloaded"); // Display container after loading time
     carousel.style.opacity = "1";
-  }, delayInMilliseconds); 
+  }, sitedelayInMilliseconds); 
 });
 
 //Functionality to navigate to corresponding screen on clicking each number control
