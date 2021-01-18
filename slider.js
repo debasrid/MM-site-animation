@@ -40,38 +40,48 @@ window.addEventListener('load', function () {
 
 //Functionality to navigate to corresponding screen on clicking each number control
 indicators.forEach((indicator, i) => {
+  if(i!=0 && i!=9) {sections[i].style.opacity = 0;}                               // During load, none of pages is visible
   indicator.addEventListener('click', () => {
+    let selectedIndex = document.querySelector('.control .selected').innerHTML;   // Get index of selected page number
+    sections[selectedIndex].style.animationName = 'fadeOutText';                  //Text animation to make present page content invisible
+    sections[selectedIndex].style.animationDuration = '0.1s';                     //Duration of text animation
+    sections[selectedIndex].style.animationFillMode = 'forwards';                 // Maintain state of end of animation
     document.querySelector('.control .selected').classList.remove('selected');    //Deselect the already selected button
     indicator.classList.add('selected');                                          //Select the button clicked on
     slider.style.transform = 'translateX(' + (i) * -sectransitionScale + '%)';    //Move to the slide corresponding to the button clicked
     bgslider.style.transform = 'translateX(' + (i) * -bgtransitionScale + '%)';   //Move to the section of background image corresponding to the number clicked
     index = i;
-    sections[index].style.webkitAnimationName = 'fadein';                         //Text animation to appear slowly on screen
-    sections[index].style.webkitAnimationDuration = '5s';                         //Duration of text animation
+    sections[index].style.animationName = 'fadeInText';                           //Text animation to appear slowly on screen
+    sections[index].style.animationDuration = '1s';                           //Duration of text animation
+    sections[index].style.animationFillMode = 'forwards';
   });
 });
 
 //Functionality to navigate to previous screen on pressing the left control button
 left.addEventListener('click', function () {
-  sections[index].style.webkitAnimationName = '';                                 //Remove previous text animation to allow reattaching new animation
+  sections[index].style.animationName = '';                                 //Remove previous text animation to allow reattaching new animation
+  sections[index].style.opacity = 0;                                        //Make content of current page invisible
   index = (index > 0) ? index - 1 : 0;                                            //Decrement screen counter unless already on first screen
   document.querySelector('.control .selected').classList.remove('selected');      //Deselect the already selected button
   indicatorParent.children[index].classList.add('selected');                      //Select the button corresponding to the screen
   bgslider.style.transform = 'translateX(' + (index) * -bgtransitionScale + '%)'; //Move to the previous slide
   slider.style.transform = 'translateX(' + (index) * -sectransitionScale + '%)';  //Move to the section of background image corresponding to previous slide
-  sections[index].style.webkitAnimationName = 'fadein';                           //Text animation to appear slowly on screen
-  sections[index].style.webkitAnimationDuration = '5s';                           //Duration of text animation
+  sections[index].style.animationName = 'fadeInText';                       //Text animation to appear slowly on screen
+  sections[index].style.animationDuration = '1s';                           //Duration of text animation
+  sections[index].style.animationFillMode = 'forwards';                      // Maintain state of end of animation
 });
 
 //Functionality to navigate to next screen on pressing the right control button
 right.addEventListener('click', function () {
-  sections[index].style.webkitAnimationName = '';                                 //Remove previous text animation to allow reattaching new animation
+  sections[index].style.animationName = '';                                 //Remove previous text animation to allow reattaching new animation
+  sections[index].style.opacity = 0;      
   index = (index < 10 - 1) ? index + 1 : 9;                                       //Increment screen counter unless already on last screen
   document.querySelector('.control .selected').classList.remove('selected');      //Deselect the already selected button
   indicatorParent.children[index].classList.add('selected');                      //Select the button corresponding to the screen
   bgslider.style.transform = 'translateX(' + (index) * -bgtransitionScale + '%)'; //Move to the next slide
   slider.style.transform = 'translateX(' + (index) * -sectransitionScale + '%)';  //Move to the section of background image corresponding to next slide
-  sections[index].style.webkitAnimationName = 'fadein';                           //Text animation to appear slowly on screen
-  sections[index].style.webkitAnimationDuration = '5s';                           //Duration of text animation
+  sections[index].style.animationName = 'fadeInText';                           //Text animation to appear slowly on screen
+  sections[index].style.animationDuration = '1s';                           //Duration of text animation
+  sections[index].style.animationFillMode = 'forwards';
 });
 

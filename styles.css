@@ -20,6 +20,169 @@ body {
   margin:20px auto;
   position: relative;
 }
+
+/*----------------Loader animation---------------------*/
+#loader-wrapper {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  overflow-y: hidden;
+}
+
+/* / Smoke animation for loader / */
+#smoke {
+  display:block;
+  position: absolute;
+  opacity: 0.25;
+  height:100%;
+  width:100%;
+  background: url(./images/smoke.gif);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  background-position: 50% 35%; 
+}
+
+/* / Monk Animation for loader / */
+#loader-img {
+  display:block;
+  position: absolute;
+  height:100%;
+  width:100%;
+  background: url(./images/monk.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 5%;
+  background-position: center; 
+  animation: fadeInandBounce ease 3s forwards; 
+  animation-iteration-count: 1; 
+}
+
+/*Loader text style*/
+#loader-txt {
+  display:flex;
+  position: relative;
+  left: 48%;
+  top: 65%;
+  font-family: 'Klavika LT';
+  color: #ffffff;
+  font-size: 2vh;
+  width: 100%;
+}
+
+#txt-section1 {
+  animation: zoomInAnimation .8s; 
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards; 
+  top:49%;
+  left:49%;
+}
+
+#txt-section1::after{
+    content:"";
+    animation: changetxt 0.8s forwards;
+} 
+
+#txt-section2 {
+  display:block;
+  position: absolute;
+  font-family: 'Klavika LT';
+  color: #ffffff;
+  animation: slideLeftAnimation linear 2s forwards; 
+  animation-iteration-count: 1; 
+  animation-delay: 0.80s;
+  opacity: 0;
+}   
+
+    
+/* / Fade in and Bounce animation for loading monk image / */
+@keyframes fadeInandBounce {
+  0% {
+    transform: scale(0.5);
+  }
+  15% {
+    transform: scale(1);
+  }
+  25% {
+    transform: translateY(0.5%);
+  }
+  45% {
+    transform: translateY(-0.5%);
+  }
+  65%{
+    transform: translateY(0.5%);
+  }
+  85%{
+    transform: translateY(0);
+  }
+  
+}
+
+/* / Text animations Of the Loader / */
+
+@keyframes zoomInAnimation { 
+  0% { 
+      opacity: 1;
+      transform: scale(0.5); 
+  } 
+  10% { 
+      opacity: 1;
+      transform: scale(1); 
+  }
+  20% {
+    opacity: 1; 
+    transform: scale(0.75); 
+  }  
+  30% { 
+    opacity: 1;
+    transform: scale(1); 
+  }  
+
+  90% { 
+    transform: translateX(0);
+    opacity: 1;
+    content:"";
+  }
+
+  100% { 
+    transform: translateX(-60%);
+    opacity: 1;
+    content:",";
+  }
+ 
+} 
+
+@keyframes slideLeftAnimation {   
+
+  0% { 
+    opacity:0;
+    transform: translateX(10%);
+  }
+
+  3% { 
+    transform: translateX(25%);
+    opacity:1 ;
+  }  
+  
+  100%{
+      opacity:1;
+      transform: translateX(25%);
+  }
+
+} 
+
+@keyframes changetxt {
+  0% { content:"Patience!"; }
+  90%{ content:"Patience!"}
+  100% { content:"Patience,"; }
+}
+
+/*-------------End Loader animation--------------------*/
+
+
+/*-------------Main body carousel style--------------------*/
 .carousel {
   height: 100vh;
   overflow: hidden;
@@ -48,11 +211,44 @@ body {
 }  
 .slider section{
   flex-basis: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.control {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+}
+
+#ctrlBtns {
+  z-index: 2002;
+}
+
+#pgNavTxt {
+  display: flex;
+  height: 100%;
+  width: 1000%;
+  transition: all 1s;
+  position: absolute;
+}  
+#pgNavTxt section{
+  flex-basis: 100%;
   justify-content: left;
   align-items: center;
   display: flex;
   font-size: 20px;
   color: #ffffff;
+  height: 50px;
+  bottom: 10%;
+}
+
+#siteLogo {
+  z-index: 2000;
 }
 
 .left, .right {
@@ -66,12 +262,12 @@ body {
   -webkit-user-select: none;
   color: #ffffff;
 }
-.left {
-  left: 10px;
-}
-.right {
-  right: 10px;
-}
+  .left {
+    left: 10px;
+  }
+  .right {
+    right: 10px;
+  }
 
 /* Navigation controls */
 .control ul {
@@ -86,15 +282,31 @@ body {
   width: 20px;
   height: 15px;
   background: transparent;
-  border: 2px darkgrey dotted;
+  border-top: 2px darkgrey dotted;
+  border-left: 2px darkgrey dotted;
+  border-bottom: 2px darkgrey dotted;
   cursor: pointer;
   text-align: center;
+  vertical-align: middle;
+  font-family: 'Klavika LT';
+  font-size: 2vh;
   color: darkgrey;
   
 }
+.control ul li.leftCtl {
+  color:transparent;
+}
 .control ul li.selected {
-  background: darkgrey;
-  
+  background-color: darkgray;
+  padding: 1.5px;
+  width: 17px;
+  height: 12px;
+  background-clip: content-box;
+  color:transparent;
+}
+.control ul li.rightCtl {
+  border-right: 2px darkgrey dotted;
+  color:transparent;
 }
 
 span {    
@@ -104,50 +316,88 @@ span {
 }
 
 /* Screen text styles */
-.top {
-      top: 10%;
-      left: 1%;
-      font-size:3vw;
-      text-decoration: underline;
-      text-transform: capitalize;
+  .landingtop {
+    margin-left: 0.3%;
+    font-size:3vw;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    text-transform: capitalize;
   }
 
- .lfttxt{
-    top: 50%;
+  .landingTxtLn1 {
+    top: 10%;
+  }
+
+  .landingTxtLn2 {
+    top: 18%;
+  }
+
+  .landingTxtLn3 {
+    top: 26%;
+  }
+  
+  .landingbottom{
+    bottom:8%;
+    left: 0.65%;
+    font-size: 1.5vh;
+  }
+
+  .pgLeftTxt{
     transform: translateY(-50%);
     font-size:3vw;
-    font-size: 3vw;
-    text-decoration: underline;
-    text-transform: capitalize;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    text-transform: uppercase;
   }
 
-  .rgttxt{
-    text-align: right;
+ .pgTxtLn1{
     top: 50%;
+  }
+  .pgTxtLn2{
+    top: 57%;
+  }
+  .pgTxtLn3{
+    top: 64%;
+  }
+  .pgTxtLn4{
+    top: 71%;
+  }
+  .pgTxtLn5{
+    top: 78%;
+  }
+  
+  .pgRightTxt{
+    text-align: right;
     transform: translateY(-50%);
-    font-size: 3vw;
-    text-decoration: underline;
-    text-transform: capitalize;
+    font-size:3vw;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    text-transform: uppercase;
   }  
   
-  .contacttext{
-    top:10%;
+  .contactTopTxt{
+    text-align: right;
     transform: translateY(-50%);
-    padding-left: 7%;
-    font-size: 2.75vw;
-  }
-  
-
- .bottom{
-    padding-left: 1%;
-    bottom:8%;
-    font-size: 1vw;
-  }
-
-.btmtxt{
-    padding-left: 2.5%;
+    font-size:3vw;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    text-transform: uppercase;
+  }  
+  .contactMidTxt{
+    text-align: right;
+    transform: translateY(-50%);
     font-size:1vw;
-    bottom:3%;
+    text-decoration: none;
+  }
+  .contactMidTxt a{
+    text-decoration: underline;
+    color: #ffffff;
+  }
+
+  .pgBottomTxt{
+    bottom:8%;
+    font-size: 1.0vh;
+    text-align: left;
   }  
 
   /* Logo style */
@@ -161,330 +411,182 @@ span {
     background-repeat: no-repeat;
   }
 
-  
-/**
-* Text fadein effect for different browsers
-*/
-  @keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
 
-  /* Firefox < 16 */
-  @-moz-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
+/* Text animations for carousel */
 
-  /* Safari, Chrome and Opera > 12.1 */
-  @-webkit-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
-
-  /* Internet Explorer */
-  @-ms-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
-
-  /* Opera < 12.1 */
-  @-o-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
-
-
-/*Loader styles   */
-
-  #loader-wrapper {
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-  }
-
-/* Smoke animation for loader */
-  #smoke {
-    display:block;
-    position: absolute;
-    opacity: 0.25;
-
-    height:100%;
-    width:100%;
-    background: url(./images/smoke.gif);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: auto;
-    background-position: 50% 35%; 
-
-    z-index:1001;
-  }
-
-/* Loader style */
-  #loader-img {
-    display:block;
-    position: absolute;
-
-    height:100%;
-    width:100%;
-    background: url(./images/monk.png);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 5%;
-    background-position: center; 
-    animation: fadeInandBounce ease 3s; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
-    z-index:1003;
-  }
-
-  #loader-txt {
-    display:flex;
-    position: absolute;
-    left: 50%;
-    top: 65%;
-    font-family: 'Klavika LT';
-    color: #ffffff;
-    font-size: 2vh;
-    z-index:1002;
-    width: 100%;
-  }
-
-  #txt-section1 {
-    animation: zoomInAnimation linear 1.60s; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
-  }
-
-  #txt-section2 {
-    display:block;
-    animation: slideLeftAnimation ease-out 1.00s; 
-    animation-iteration-count: 1; 
-    animation-delay: 0.60s;
+@keyframes fadeInText {
+  0% {
     opacity: 0;
   }
-
-  #txt-section3 {
-    display:block;
-    position: absolute;
-    font-family: 'Klavika LT';
-    color: #ffffff;
-    animation: slideLeftAnimation linear 0.50s; 
-    animation-iteration-count: 1; 
-    animation-delay: 1.80s;
+  90%{
     opacity: 0;
   }
-  
-  #loader-wrapper .loader-section {
-    position:fixed;
-    top:0;
-    background:#333;
-    width:51%;
-    height:100%;
-    z-index:1000;
+  100%{
+    opacity: 1;
   }
-  
-  #loader-wrapper .loader-section.section-left {
-    left:0
+}
+
+@keyframes fadeOutText {
+  0% {
+    opacity: 1;
   }
-  #loader-wrapper .loader-section.section-right {
-    right:0;
-  }
-  
-  /* Loaded Styles */
-  .carouselloaded {
-    animation-name: appear;
-    animation-duration: 5s;
-  }
-  .containerloaded #loader {
+  10%{
     opacity: 0;
-    transition: all 5.3s ease-out;
   }
-  .containerloaded #loader-wrapper {
-    visibility: hidden;
-    transform:translateY(-100%);
-    
-  }
-    
- /* Fade in and Bounce animation for loading image */
-  @-webkit-keyframes fadeInandBounce {
-    0% {
-      transform: scale(0.5);
-    }
-    15% {
-      transform: scale(1);
-    }
-    25% {
-      transform: translateY(23px);
-    }
-    45% {
-      transform: translateY(-25px);
-    }
-    65%{
-      transform: translateY(23px);
-    }
-    85%{
-      transform: translateY(0);
-    }
-  }
-
-/* Text animations */
-
-@keyframes zoomInAnimation { 
-  0% { 
-      opacity: 1;
-      transform: scale(0.5); 
-  } 
-  10% { 
-      opacity: 1;
-      transform: scale(1); 
-  }
-  20% {
-    opacity: 1; 
-    transform: scale(0.75); 
-  }  
-  30% { 
-    opacity: 1;
-    transform: scale(1); 
-  }
-  40% { 
-    opacity: 1;
-    transform: scale(1); 
-  }
-  50% { 
+  100%{
     opacity: 0;
-    transform: translateY(5px);
   }
-  60% { 
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  70% { 
-    opacity: 0;
-    transform: translateY(5px);
-  }  
-  75% { 
-    transform: translateX(-23px);
-    opacity: 1;
-  }
-  80% { 
-    transform: translateX(-50px);
-    opacity: 1;
-  }
-  85% { 
-    transform: translateX(-70px);
-    opacity: 1;
-  } 
-  90% { 
-    transform: translateX(-90px);
-    opacity: 1;
-  }
-  95% { 
-    transform: translateX(-110px);
-    opacity: 1;
-  }
-  100% { 
-    transform: translateX(-120px);
-    opacity: 1;
-  }
-   
-} 
-
-@keyframes slideLeftAnimation {   
-  0% { 
-    opacity: 1;
-  }
-  10% { 
-    opacity: 1;
-  }
-  30% { 
-    transform: translateX(-23px);
-    opacity: 1;
-  }
-  60% { 
-    transform: translateX(-50px);
-    opacity: 1;
-  }
-  90% { 
-    transform: translateX(-70px);
-    opacity: 1;
-  } 
-  100% { 
-    transform: translateX(-65px);
-    opacity: 1;
-  }  
-   
-} 
-
-@keyframes fadeInAnimation { 
-  0% { 
-    opacity: 1;
-  } 
-  30% { 
-    opacity: 1;
-  }
-  60% { 
-    opacity: 1;
-  }  
-  90% { 
-    opacity: 1; 
-  }
-  100% { 
-    opacity: 1;
-  }  
-   
-} 
-
+}
 
 /**
 *Adjusting for different screen sizes
 */
 
 /* Extra small devices (phones, 400px and down) */
-@media only screen and (max-width: 400px) {
-  .lfttxt{ padding-left: 1.5%; }
-  .rgttxt{ padding-left: 4%; }
-  .top,.lfttxt,.rgttxt,.contacttext { font-size: 2.5vh; }
-  .logo{ background: url(./images/logo_sm.png) no-repeat; left: 75%}
-  .bottom,.btmtxt{font-size: 2vh;  padding-left: 1%; bottom:8%;}
+@media only screen and (max-width: 399px) {
+  .landingtop{font-size: 2vh; }
+  .landingbottom{font-size: 1.2vh; bottom: 10%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 9%; }
+  .landingTxtLn3 { top: 13%; }
+  .pgLeftTxt{ margin-left: 1.5%; font-size: 2vh; }
+  .pgRightTxt{ margin-left: 4.75%; font-size: 2vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 54%; }
+  .pgTxtLn3{ top: 58%; }
+  .pgTxtLn4{ top: 62%; }
+  .pgTxtLn5{ top: 66%; }
+  .contactTopTxt{ margin-left: 6%; font-size: 2vh; }
+  .contactMidTxt{ margin-left: 1.5%; font-size: 1.3vh;}
+  .logo{ background: url(./images/logo_sm.png) no-repeat; left: 83%;}
+  .pgBottomTxt{font-size: 1.2vh;  margin-left: 1.5%; bottom:8%;}
+  .control ul li{font-size: 1.5vh;}
 }
 
 /* Small devices (portrait tablets and large phones, 400px and up) */
 @media only screen and (min-width: 400px) {
-  .lfttxt{ padding-left: 1%; }
-  .rgttxt{ padding-left: 6.5%; }
-  .top,.lfttxt,.rgttxt,.contacttext { font-size: 3vh; }
-  .logo{ background: url(./images/logo_mid.png) no-repeat; left: 75%}
-  .bottom,.btmtxt{font-size: 2vh;  padding-left: 1%; bottom:8%;}
+  .landingtop{font-size: 2vh; }
+  .landingbottom{font-size: 1.2vh; bottom: 7%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 9%; }
+  .landingTxtLn3 { top: 13%; }
+  .pgLeftTxt{ margin-left: 1%; font-size: 2vh; }
+  .pgRightTxt{ margin-left: 6.5%; font-size: 2vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 54%; }
+  .pgTxtLn3{ top: 58%; }
+  .pgTxtLn4{ top: 62%; }
+  .pgTxtLn5{ top: 66%; }
+  .contactTopTxt{ margin-left: 6.0%; font-size: 2.4vh; }
+  .contactMidTxt{ margin-left: 2.75%; font-size: 1.3vh;}
+  .logo{ background: url(./images/logo_sm.png) no-repeat; left: 83%;}
+  .pgBottomTxt{font-size: 1.2vh;  margin-left: 1.3%; bottom:7%;}
+  .control ul li{font-size: 1.5vh;}
+}
+
+/* Medior devices (portrait large tablets and very large phones, 400px and up) */
+@media only screen and (min-width: 500px) {
+  .landingtop{font-size: 2vh; }
+  .landingbottom{font-size: 1.2vh; bottom: 7%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 9%; }
+  .landingTxtLn3 { top: 13%; }
+  .pgLeftTxt{ margin-left: 1%; font-size: 2vh; }
+  .pgRightTxt{ margin-left: 6.5%; font-size: 2vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 54%; }
+  .pgTxtLn3{ top: 58%; }
+  .pgTxtLn4{ top: 62%; }
+  .pgTxtLn5{ top: 66%; }
+  .contactTopTxt{ margin-left: 6.7%; font-size: 2.4vh; }
+  .contactMidTxt{ margin-left: 4%; font-size: 1.3vh;}
+  .logo{ background: url(./images/logo_sm.png) no-repeat; left: 83%;}
+  .pgBottomTxt{font-size: 1.2vh;  margin-left: 1.3%; bottom:7%;}
+  .control ul li{font-size: 1.5vh;}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .lfttxt{ padding-left: 1%; }
-  .rgttxt{ padding-left: 6.5%; }
-  .top,.lfttxt,.rgttxt,.contacttext { font-size: 4vh; }
-  .logo{ background: url(./images/logo_mid.png) no-repeat; left: 80%}
-  .btmtxt{font-size: 2vh;  padding-left: 1%; bottom:8%;}
+  .landingtop{font-size: 3vh; }
+  .landingbottom{font-size: 1.5vh; bottom: 7%; left: 0.95%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 9%; }
+  .landingTxtLn3 { top: 13%; }
+  .pgLeftTxt{ margin-left: 0.6%; font-size: 3vh; }
+  .pgRightTxt{ margin-left: 7.0%; font-size: 3vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 54%; }
+  .pgTxtLn3{ top: 58%; }
+  .pgTxtLn4{ top: 62%; }
+  .pgTxtLn5{ top: 66%; }
+  .contactTopTxt{ margin-left: 6.5%; font-size: 4.5vh; }
+  .contactMidTxt{ margin-left: 5.2%; font-size: 1.75vh;}
+  .logo{ background: url(./images/logo_mid.png) no-repeat; left: 90%;}
+  .pgBottomTxt{font-size: 1.5vh;  margin-left: 3.8%; bottom:3.5%;}
+  .control ul li{font-size: 1.75vh;}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .lfttxt{ padding-left: 0.5%; }
-  .rgttxt{ padding-left: 7.5%; }
-  .top,.lfttxt,.rgttxt,.contacttext { font-size: 4vh; }
-  .logo{ background: url(./images/logo_lrg.png) no-repeat; left: 80%}
-  .btmtxt{font-size: 2vh;  padding-left: 3.25%; bottom:4%;}
+  .landingtop{font-size: 6vh; }
+  .landingbottom{font-size: 1.75vh; bottom: 7%; left: 0.95%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 12%; }
+  .landingTxtLn3 { top: 19%; }
+  .pgLeftTxt{ margin-left: 0.5%; font-size: 5vh; }
+  .pgRightTxt{ margin-left: 6.2%; font-size: 5vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 56%; }
+  .pgTxtLn3{ top: 62%; }
+  .pgTxtLn4{ top: 70%; }
+  .pgTxtLn5{ top: 78%; }
+  .contactTopTxt{ margin-left: 6.5%; font-size: 5.5vh; }
+  .contactMidTxt{ margin-left: 6.2%; font-size: 1.75vh;}
+  .logo{ background: url(./images/logo_mid.png) no-repeat; left: 90%;}
+  .pgBottomTxt{font-size: 1.5vh;  margin-left: 3.2%; bottom:3.5%;}
+  .control ul li{font-size: 2vh;}
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .lfttxt{ padding-left: 0.5%; }
-  .rgttxt{ padding-left: 7.5%; }
-  .top,.lfttxt,.rgttxt,.contacttext { font-size: 5vh; }
-  .logo{ background: url(./images/logo_lrg.png) no-repeat; left: 85%}
-  .btmtxt{font-size: 2vh;  padding-left: 2.5%; bottom:4%;}
+  .landingtop{font-size: 8vh; }
+  .landingbottom{font-size: 1.85vh; bottom: 7%; left: 0.8%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 15%; }
+  .landingTxtLn3 { top: 25%; }
+  .pgLeftTxt{ margin-left: 0.5%; font-size: 7vh; }
+  .pgRightTxt{ margin-left: 6%; font-size: 7vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 58%; }
+  .pgTxtLn3{ top: 66%; }
+  .pgTxtLn4{ top: 74%; }
+  .pgTxtLn5{ top: 82%; }
+  .contactTopTxt{ margin-left: 6.5%; font-size: 7vh; }
+  .contactMidTxt{ margin-left: 6.9%; font-size: 1.75vh;}
+  .logo{ background: url(./images/logo_lrg.png) no-repeat; left: 87%;}
+  .pgBottomTxt{font-size: 1.5vh;  margin-left: 2.7%; bottom:3.5%;}
+  .control ul li{font-size: 2vh;}
+}
+
+/* Extra large devices (Extra large laptops and desktops, 1500px and up) */
+@media only screen and (min-width: 1500px) {
+  .landingtop{font-size: 8vh; }
+  .landingbottom{font-size: 1.85vh; bottom: 7%; left: 0.8%; }
+  .landingTxtLn1 { top: 5%; }
+  .landingTxtLn2 { top: 15%; }
+  .landingTxtLn3 { top: 25%; }
+  .pgLeftTxt{ margin-left: 0.5%; font-size: 7vh; }
+  .pgRightTxt{ margin-left: 6.5%; font-size: 7vh; }
+  .pgTxtLn1{ top: 50%; }
+  .pgTxtLn2{ top: 58%; }
+  .pgTxtLn3{ top: 66%; }
+  .pgTxtLn4{ top: 74%; }
+  .pgTxtLn5{ top: 82%; }
+  .contactTopTxt{ margin-left: 6.5%; font-size: 7vh; }
+  .contactMidTxt{ margin-left: 6.9%; font-size: 1.75vh;}
+  .logo{ background: url(./images/logo_lrg.png) no-repeat; left: 87%;}
+  .pgBottomTxt{font-size: 1.5vh;  margin-left: 2.3%; bottom:3.5%;}
+  .control ul li{font-size: 2vh;}
 }
 
 
