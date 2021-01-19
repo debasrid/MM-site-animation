@@ -1,2 +1,2 @@
 # MM-site-animation
-Frontpage animation for MediaMonks site using HTML, CSS and JS
+Frontpage animation for a media site using HTML, CSS and JS
